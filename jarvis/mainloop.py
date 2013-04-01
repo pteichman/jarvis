@@ -3,7 +3,6 @@ import os.path
 import sys
 import time
 import traceback
-from PyQt4 import QtCore
 import jarvis
 import rollbackimporter
 import imp
@@ -34,11 +33,12 @@ class Display():
         info = " ".join(map(lambda x: str(x), args)) + "\n"
         print "INFO", info
 
+    def runcommand(self, fun):
+        fun()
 
-class MainLoop(QtCore.QThread):
+
+class MainLoop(object):
     def __init__(self, filename_function, display = None):
-        QtCore.QThread.__init__(self)
-
         self.filename_function = filename_function
         self.finished = False
         self.display = display

@@ -29,17 +29,17 @@ def get_filename(key):
 
 def run(filename_function, layout=None):
     global ml
-    import qtdisplay
     import mainloop
 
     try:
         ml = mainloop.MainLoop(filename_function)
 
-        display = qtdisplay.QTDisplay(ml, layout)
+        display = mainloop.Display()
         ml.setdisplay(display)
 
         display.init()
 
+        ml.run()
     except KeyboardInterrupt:
         pass
     except Exception, e:
